@@ -1,16 +1,16 @@
-<!-- Code from d3-graph-gallery.com -->
+<!-- Code edited from d3.library -->
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<!-- Load d3.js -->
+	
 	<script src="https://d3js.org/d3.v4.js"></script>
 
 </head>
 <body>
 	<h1>Emma Stone Genre Combinations!</h1>
 
-	<!-- Create a div where the graph will take place -->
+
 	<div id="chord-chart"></div>
 	<style>
 		.group-labels
@@ -21,11 +21,10 @@
 		}
 
 	</style>
-	<!-- Script to create Chord Chart -->
+	
 	<script>
 
 
-	// Create the svg area.
 	var svg = d3.select("#chord-chart")
 	  .append("svg")
 		.attr("width", 1920)
@@ -38,16 +37,16 @@
 	var names = ["Action", "Adventure", "Animation", "Biography","Comedy", "Crime","Drama", "Family", "Fantasy", "Horror", "Music", "Romance", "Sci-Fi","Short"],
 	colours = ["#2F4858", "#3C6A7A", "#A4FFDB", "#498E9A", "#00C4D7", "#005FB1", "#5DB3B5", "#00C4D7", "#5EE3D8", "#0083C8", "#CBFBE7","#8CD9FF", "#59C068","#00432A"];
 
-	// Create input data: a square matrix with random data that provides flow between entities.
+	
 	var matrix = [[0, 5, 1, 0, 3, 3, 1, 0, 0, 1, 0, 0, 2, 0], [5, 0, 3, 0, 4, 2, 0, 0, 0, 1, 0, 0, 1, 0], [1, 3, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0], [3, 4, 2, 2, 0, 0, 11, 4, 2, 3, 5, 8, 2, 1], [3, 2, 0, 0, 0, 0, 2, 0, 1, 0, 0, 0, 0, 0], [1, 0, 0, 2, 11, 2, 0, 0, 1, 0, 1, 3, 2, 0], [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 2, 1, 1, 0, 0, 0, 0, 1, 0, 1], [1, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 5, 0, 1, 0, 0, 0, 0, 0, 0, 2], [0, 0, 0, 0, 8, 0, 3, 1, 1, 0, 0, 0, 0, 0], [2, 1, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0, 0, 0]]
 
-	// Give this matrix to d3.chord(): it will calculates all the info we need to draw arc and ribbon.
+	
 	var res = d3.chord()
 		.padAngle(0.09)     // padding between entities (black arc)
 		.sortSubgroups(d3.descending)
 		(matrix)
 
-	// Add the groups to the inner part of the circle.
+	
 	 svg
 	  .datum(res)
 	  .append("g")
@@ -67,7 +66,6 @@ var arc = d3.arc()
   .outerRadius(310)
 
 
-	// Add the links between groups.
 
 	svg
 	  .datum(res)
