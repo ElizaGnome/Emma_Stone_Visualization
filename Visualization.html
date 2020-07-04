@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src = "https://d3js.org/d3.v5.min.js"></script>
+    <title> Number of Movies Released Per Year </title>
+</head>
+<body>
+
+<script>
+        d3.csv("Emma_Data_Clean_Year.csv").then(function(MovieData){
+            console.log(MovieData);
+            var margin = {top:20, right:20, bottom:50, left:50};
+            var spacing = "50";
+            var width = "700";
+            var height = "400";
+
+
+
+            var svg = d3.select("body").append("svg")
+                        .attr("width", width)
+                        .attr("height", height)
+                        .style("background", "lightgray")
+                        .style("padding", spacing);
+
+
+            var yScale = d3.scaleLinear()
+                           .domain([0, 8])
+                           .range([360, 0]);
+
+
+
+
+            var yAxis = d3.axisLeft(yScale);
+            svg.append("g")
+                .attr("transform", "translate(30,15)")
+                .call(yAxis)
+                .style("font-size", "11px")
+                .style("stroke", "black");
+
+            svg.append("text")
+                .attr("x", (width/2))
+                .attr("y", 11)
+                .style("font-size", "15px")
+                .style("text-anchor", "middle")
+                .style("stroke", "black")
+                .text("Number of TV/Films Made By Year");
+
+
+          var rectangles = svg.selectAll("rect").data(MovieData);
+            rectangles.enter().append("rect")
+                        .attr ("width", 30)
+                        .attr ("height", function(d, i){return d.Films*45;})
+                        .attr ("x", function(d, i ) {return 40 + (i * 33);})
+                        .attr ("y", function(d, i ){return (height -25) - (d.Films*45);})
+                        .style("fill", "indigo");
+
+          var year = svg.selectAll("Year").data(MovieData);
+            year.enter().append("text")
+                .text(function(d){return d.Year;})
+                .style("stroke", "black")
+                .style("font-size", "12px")
+                .style("font-type", "Times New Roman")
+                .attr("x", function (d, i) {return 43 + (i* 33);})
+                .attr("y", function(d, i) {return height - 3;})
+
+
+           var Film = svg.selectAll("Films").data(MovieData);
+            Film.enter().append("text")
+                .text(function(d){return d.Films;})
+                .style("stroke", "black")
+                .style("font-size", "15px")
+                .style("font-type", "Times New Roman")
+                .attr("x", function (d, i) {return 51 + (i*33);})
+                .attr("y", function(d, i) {return (height -30) - (d.Films*45);})
+        })
+
+
+</script>
+</body>
+</html>
